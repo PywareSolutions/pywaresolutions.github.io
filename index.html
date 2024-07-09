@@ -119,22 +119,21 @@
       width: 30%;
       background: lightblue;
     }
-    .footer-text {
-      font-size: 20px;
-      text-align: center;
-      font-family: "Concert One", sans-serif;
-      font-weight: 400;
-      font-style: normal;
-    }
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .trustpilot-widget {
-      margin-top: 10px; /* Adjust as needed */
-    }
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .footer-text {
+    flex-basis: 100%;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .trustpilot-widget {
+    margin-left: 50px;
+    align-self: flex-start;
+  }
   </style>
 </head>
 <body>
@@ -221,9 +220,8 @@
     <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="668886af0d32e90214f03b66" data-style-height="52px" data-style-width="100%">
       <a href="https://www.trustpilot.com/review/pywaresolutions.github.io" target="_blank" rel="noopener">Trustpilot</a>
     </div>
-  </div>
-  <div class="footer-text">
-    <p>Site hosted by GitHub</p>
+    <div class="footer-text">
+      <p>Site hosted by GitHub</p>
+    </div>
   </div>
 </body>
-</html>
