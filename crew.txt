@@ -1,0 +1,64 @@
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+      font-size: 20px;
+      font-family: "Josefin Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 350;
+      font-style: normal;
+      text-align: center;
+    }
+  </style>
+  <div class="top-bar-our-crew">
+    <h2>Our Crew</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+      </tr>
+      <tr style="border-bottom: 0;">  <th colspan="2">Company and Programming Department</th>  </tr>
+      <tr>
+        <td>James Woodruff</td>
+        <td>Owner and Main Developer</td>
+      </tr>
+      <tr>
+        <td>Richard Skutar</td>
+        <td>Product Representative</td>
+      </tr>
+      <tr>
+      <tr style="border-bottom: 0;">  <th colspan="2">Game Department</th>  </tr>
+      </tr>
+      <tr>
+        <td>Jade Skutar</td>
+        <td>Concept Artist</td>
+      </tr>
+      <tr>
+        <td>Sherwood Schluter</td>
+        <td>Music Composer</td>
+      </tr>
+      <tr>
+        <td>Sherwood Barclay</td>
+        <td>Product Representative</td>
+      </tr>
+    </table>
+  </div>
+
+    .top-bar-our-crew {
+      background: lightblue;
+      padding-top: 20px;
+      border-top: 6px solid black;
+    }
+    .top-bar-our-crew h2 {
+      font-size: 38px;
+      text-align: center;
+      font-family: "Josefin Sans", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 350;
+      font-style: normal;  
+    }
