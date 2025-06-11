@@ -3,76 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PlantPal - Your Plant Companion</title>
+  <title>PlantPal — Your AI Green Companion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #d4fc79, #96e6a1);
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --accent: #4caf50;
+      --text-dark: #2f3e2f;
+      --text-light: #ffffff;
+      --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f3f8f3;
-      color: #2f3e2f;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      backdrop-filter: blur(10px);
+      -webkit-font-smoothing: antialiased;
     }
+
     header {
-      background: #4CAF50;
-      color: white;
-      padding: 1em;
+      padding: 1.5em;
       text-align: center;
-      font-size: 1.3em;
+      font-size: 1.8em;
+      background: transparent;
+      color: var(--text-dark);
     }
-    nav {
-      display: flex;
-      justify-content: space-around;
-      background: #fff;
-      border-top: 1px solid #ccc;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      padding: 0.5em 0;
-    }
-    nav a {
-      color: #4CAF50;
-      text-decoration: none;
-      font-weight: 500;
-    }
+
     .container {
       padding: 1em;
-      padding-bottom: 4em;
+      padding-bottom: 5em;
     }
-    .plant-card {
-      background: white;
-      border-radius: 8px;
+
+    .glass {
+      background: var(--glass-bg);
+      border-radius: 20px;
       padding: 1em;
-      margin-bottom: 1em;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 1.5em;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px);
     }
-    .plant-card h3 {
-      margin: 0.2em 0;
+
+    h2, h3 {
+      margin: 0.5em 0;
     }
-    .btn {
-      background: #4CAF50;
+
+    .plant-card img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 0.5em;
+    }
+
+    button {
+      background: var(--accent);
       color: white;
       border: none;
       padding: 0.7em 1.2em;
-      border-radius: 5px;
+      margin-top: 0.5em;
+      border-radius: 10px;
       font-size: 1em;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
-    .btn.secondary {
-      background: #ddd;
-      color: #333;
+
+    button:hover {
+      background: #45a049;
     }
-    .ai-section {
-      margin-top: 1em;
-      padding: 1em;
-      background: #e8f5e9;
-      border-radius: 6px;
-    }
+
     input, textarea, select {
       width: 100%;
-      padding: 0.5em;
-      margin: 0.5em 0 1em;
-      border-radius: 5px;
+      padding: 0.7em;
+      margin-top: 0.5em;
+      border-radius: 10px;
       border: 1px solid #ccc;
+      outline: none;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(255,255,255,0.6);
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 0.7em 0;
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #ddd;
+    }
+
+    .nav a {
+      color: #2f3e2f;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+
+    .nav a i {
+      display: block;
+      margin-bottom: 0.2em;
+    }
+
+    .ai-chat {
+      background: #eafbe6;
+      padding: 1em;
+      border-radius: 15px;
+      margin-top: 1em;
+      font-style: italic;
+    }
+
+    .timeline {
+      margin-top: 1em;
+    }
+
+    .timeline-item {
+      margin-bottom: 1em;
+      border-left: 3px solid #4caf50;
+      padding-left: 1em;
+    }
+
+    .timeline-item span {
+      font-weight: bold;
     }
   </style>
 </head>
@@ -81,76 +136,95 @@
 <header>🌿 PlantPal</header>
 
 <div class="container" id="app">
-  <!-- Home / Dashboard -->
-  <section id="home">
-    <h2>Welcome back, Theo!</h2>
-    <p>Here's a summary of your green buddies:</p>
-    <div class="plant-card">
-      <h3>Monstera Deliciosa</h3>
-      <p>📍 Living Room · 🕑 Last watered: 3 days ago</p>
-      <button class="btn" onclick="viewPlant()">View</button>
-    </div>
-    <div class="plant-card">
-      <h3>Snake Plant</h3>
-      <p>📍 Bedroom · 🕑 Last watered: 5 days ago</p>
-      <button class="btn" onclick="viewPlant()">View</button>
-    </div>
-    <button class="btn" onclick="showAddForm()">➕ Add New Plant</button>
-  </section>
 
-  <!-- Add Plant Form -->
-  <section id="add-plant" style="display:none;">
-    <h2>Add a New Plant</h2>
+  <!-- Dashboard -->
+  <div id="home" class="glass">
+    <h2><i class="fas fa-seedling"></i> Your Garden</h2>
+    <div class="plant-card">
+      <div class="glass">
+        <h3>🌵 Aloe Vera</h3>
+        <p><i class="fas fa-location-dot"></i> Bathroom | 💧 2 days ago</p>
+        <img src="https://images.unsplash.com/photo-1597764692523-38ecf07fe917?auto=format&fit=crop&w=400&q=80" alt="Aloe Vera"/>
+        <button onclick="viewPlant()">View Details</button>
+      </div>
+    </div>
+    <button onclick="showAddForm()"><i class="fas fa-plus"></i> Add New Plant</button>
+  </div>
+
+  <!-- Add Plant -->
+  <div id="add-plant" class="glass" style="display:none;">
+    <h2><i class="fas fa-leaf"></i> Add a Plant</h2>
     <input type="text" placeholder="Plant Name">
-    <input type="text" placeholder="Location (e.g. Kitchen)">
-    <input type="date" placeholder="Date Acquired">
+    <input type="text" placeholder="Location (e.g. Balcony)">
+    <input type="file" accept="image/*">
     <select>
       <option selected disabled>Sunlight Level</option>
       <option>Full Sun</option>
       <option>Partial Shade</option>
       <option>Low Light</option>
     </select>
-    <textarea placeholder="Notes or nickname..."></textarea>
-    <button class="btn">Save Plant</button>
-    <button class="btn secondary" onclick="goHome()">Cancel</button>
-  </section>
+    <textarea placeholder="Notes, nicknames, or history..."></textarea>
+    <button>🌱 Save Plant</button>
+    <button onclick="goHome()">⬅ Cancel</button>
+  </div>
 
   <!-- Plant Detail -->
-  <section id="plant-detail" style="display:none;">
-    <h2>Monstera Deliciosa</h2>
-    <p><strong>Location:</strong> Living Room</p>
-    <p><strong>Sunlight:</strong> Partial Shade</p>
-    <p><strong>Watered:</strong> 3 days ago</p>
-    <p><strong>Notes:</strong> Needs support pole soon</p>
+  <div id="plant-detail" class="glass" style="display:none;">
+    <h2>🌿 Monstera Deliciosa</h2>
+    <p><i class="fas fa-map-marker-alt"></i> Living Room</p>
+    <p>☀️ Partial Shade · 💧 Water every 5–7 days</p>
+    <img src="https://images.unsplash.com/photo-1615472967946-87e3a6e184b6?auto=format&fit=crop&w=400&q=80" alt="Monstera"/>
     
-    <div class="ai-section">
-      <h3>🌱 PlantPal AI Advice</h3>
-      <p>“Your Monstera is due for watering tomorrow. Mist the leaves weekly and repot every 1–2 years.”</p>
-      <button class="btn">Ask AI</button>
+    <div class="ai-chat">
+      🤖 “Based on recent sunlight and water logs, your Monstera may be thirsty. Try misting today.”
+      <button style="margin-top:0.5em;">Ask AI</button>
     </div>
-    <button class="btn secondary" onclick="goHome()">← Back</button>
-  </section>
+
+    <div class="timeline">
+      <h3><i class="fas fa-clock"></i> Timeline</h3>
+      <div class="timeline-item">
+        <span>🗓️ June 1:</span> Added to app
+      </div>
+      <div class="timeline-item">
+        <span>💧 June 3:</span> Watered
+      </div>
+      <div class="timeline-item">
+        <span>🧠 June 4:</span> AI suggested misting
+      </div>
+    </div>
+
+    <button onclick="goHome()">⬅ Back</button>
+  </div>
 </div>
 
-<!-- Nav Bar -->
-<nav>
-  <a href="#" onclick="goHome()">Home</a>
-  <a href="#" onclick="showAddForm()">Add</a>
-  <a href="#" onclick="viewPlant()">AI</a>
-</nav>
+<!-- Nav -->
+<div class="nav">
+  <a href="#" onclick="goHome()">
+    <i class="fas fa-home"></i> Home
+  </a>
+  <a href="#" onclick="showAddForm()">
+    <i class="fas fa-plus-circle"></i> Add
+  </a>
+  <a href="#" onclick="viewPlant()">
+    <i class="fas fa-robot"></i> AI
+  </a>
+</div>
 
 <script>
   function goHome() {
-    document.querySelectorAll('section').forEach(el => el.style.display = 'none');
+    hideAll();
     document.getElementById('home').style.display = 'block';
   }
   function showAddForm() {
-    document.querySelectorAll('section').forEach(el => el.style.display = 'none');
+    hideAll();
     document.getElementById('add-plant').style.display = 'block';
   }
   function viewPlant() {
-    document.querySelectorAll('section').forEach(el => el.style.display = 'none');
+    hideAll();
     document.getElementById('plant-detail').style.display = 'block';
+  }
+  function hideAll() {
+    document.querySelectorAll('.container > div').forEach(el => el.style.display = 'none');
   }
 </script>
 
