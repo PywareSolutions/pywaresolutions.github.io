@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PlantPal - Your Plant Companion</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f8f3;
+      color: #2f3e2f;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      font-size: 1.3em;
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 0.5em 0;
+    }
+    nav a {
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .container {
+      padding: 1em;
+      padding-bottom: 4em;
+    }
+    .plant-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1em;
+      margin-bottom: 1em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .plant-card h3 {
+      margin: 0.2em 0;
+    }
+    .btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.7em 1.2em;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .btn.secondary {
+      background: #ddd;
+      color: #333;
+    }
+    .ai-section {
+      margin-top: 1em;
+      padding: 1em;
+      background: #e8f5e9;
+      border-radius: 6px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5em;
+      margin: 0.5em 0 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<header>🌿 PlantPal</header>
+
+<div class="container" id="app">
+  <!-- Home / Dashboard -->
+  <section id="home">
+    <h2>Welcome back, Theo!</h2>
+    <p>Here's a summary of your green buddies:</p>
+    <div class="plant-card">
+      <h3>Monstera Deliciosa</h3>
+      <p>📍 Living Room · 🕑 Last watered: 3 days ago</p>
+      <button class="btn" onclick="viewPlant()">View</button>
+    </div>
+    <div class="plant-card">
+      <h3>Snake Plant</h3>
+      <p>📍 Bedroom · 🕑 Last watered: 5 days ago</p>
+      <button class="btn" onclick="viewPlant()">View</button>
+    </div>
+    <button class="btn" onclick="showAddForm()">➕ Add New Plant</button>
+  </section>
+
+  <!-- Add Plant Form -->
+  <section id="add-plant" style="display:none;">
+    <h2>Add a New Plant</h2>
+    <input type="text" placeholder="Plant Name">
+    <input type="text" placeholder="Location (e.g. Kitchen)">
+    <input type="date" placeholder="Date Acquired">
+    <select>
+      <option selected disabled>Sunlight Level</option>
+      <option>Full Sun</option>
+      <option>Partial Shade</option>
+      <option>Low Light</option>
+    </select>
+    <textarea placeholder="Notes or nickname..."></textarea>
+    <button class="btn">Save Plant</button>
+    <button class="btn secondary" onclick="goHome()">Cancel</button>
+  </section>
+
+  <!-- Plant Detail -->
+  <section id="plant-detail" style="display:none;">
+    <h2>Monstera Deliciosa</h2>
+    <p><strong>Location:</strong> Living Room</p>
+    <p><strong>Sunlight:</strong> Partial Shade</p>
+    <p><strong>Watered:</strong> 3 days ago</p>
+    <p><strong>Notes:</strong> Needs support pole soon</p>
+    
+    <div class="ai-section">
+      <h3>🌱 PlantPal AI Advice</h3>
+      <p>“Your Monstera is due for watering tomorrow. Mist the leaves weekly and repot every 1–2 years.”</p>
+      <button class="btn">Ask AI</button>
+    </div>
+    <button class="btn secondary" onclick="goHome()">← Back</button>
+  </section>
+</div>
+
+<!-- Nav Bar -->
+<nav>
+  <a href="#" onclick="goHome()">Home</a>
+  <a href="#" onclick="showAddForm()">Add</a>
+  <a href="#" onclick="viewPlant()">AI</a>
+</nav>
+
+<script>
+  function goHome() {
+    document.querySelectorAll('section').forEach(el => el.style.display = 'none');
+    document.getElementById('home').style.display = 'block';
+  }
+  function showAddForm() {
+    document.querySelectorAll('section').forEach(el => el.style.display = 'none');
+    document.getElementById('add-plant').style.display = 'block';
+  }
+  function viewPlant() {
+    document.querySelectorAll('section').forEach(el => el.style.display = 'none');
+    document.getElementById('plant-detail').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
